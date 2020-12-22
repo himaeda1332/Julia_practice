@@ -124,3 +124,78 @@ pp = MAstruct(3, 2)
 pp.x
 
 # P50
+x = [1, 2, 4, 5]
+@show x
+@show length(x)
+y = [2, 4, 6, 8]
+z =  x .+ y
+
+# Relation between variables
+Int <: Number 
+
+t = (a = 1, b = 2, c = 4)
+t.a
+t[:c]
+keys(t)
+values(t)
+
+# list
+list = []
+list = [1, 3]
+push!(list, 3)
+pop!(list)
+
+insert!(list, 2, 7)
+deleteat!(list, 3)
+
+# Dict
+d = Dict{String, Float32}()
+d["tom"] = 1; d["bob"] = 2;
+d
+
+d.keys
+
+# Set
+s = Set([1, 2, 3, 3])
+
+union(s, [3, 4, 5])
+empty!(d)
+length(d)
+
+a = Array{Float32}(undef, 2, 3)
+zeros(Float32, 4, 4)
+ones(Float32, 4, 3)
+rand(Float32, 3, 3)
+randn(Float32, 2, 2)
+fill(5, 3, 4)
+
+for i = 1:6
+    println(a[i])
+end
+
+eltype(a)
+length(a)
+ndims(a)
+size(a)
+test = size(a)
+test[1]
+
+A = collect(reshape(1:9, 3, 3))
+# 3×3 reshape(::UnitRange{Int64}, 3, 3) with eltype Int64:
+#  1  4  7
+#  2  5  8
+#  3  6  9
+
+# 3×3 Array{Int64,2}:
+#  1  4  7
+#  2  5  8
+#  3  6  9
+A[3, 3]
+A[9]
+
+
+A = rand(Float32, 100, 100)
+B = ones(Float32, 100, 100)
+A + B
+A .+ 1
+# P81
