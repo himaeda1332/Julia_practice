@@ -199,3 +199,74 @@ B = ones(Float32, 100, 100)
 A + B
 A .+ 1
 # P81
+module Greeting
+export hello
+hello(name) = println("Hello!!, $(name)")    
+end
+Greeting.hello("Tsumugi")
+hello("Aya")
+
+using .Greeting
+
+hello("Nuiko")
+
+ex = :(2x + 1) 
+dump(ex)
+@macroexpand @assert x > 0
+
+# P117
+using LinearAlgebra
+dot([1, 2, 3], [2, 3, 4])
+
+cross([0, 1, 2], [2, 3, 7])
+
+v = [1, 3, 4]
+norm(v, 1)
+norm(v, 2)
+norm(v, Inf)
+normalize(v, 1)
+
+A = [1 2 3; 5 6 3; 7 8 1]
+tr(A)
+inv(A)
+Symmetric(A)
+F = svd(A)
+eigen(A)
+
+using LinearAlgebra.BLAS
+A = [1.0 4.0; 2.0 5.0; 3.0 6.0]; x = [1.0, 2.0, 3.0]
+y = [0.0, 0.0]
+BLAS.gemv!('T', 1.0, A, x, 1.0, y)
+
+A = reshape([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], 3, 2)
+B = copy(A)
+C = zeros(3, 3)
+BLAS.gemm!('N', 'T', 1.0, A, B, 1.0, C)
+
+# open(filename::String, [mode::String]) -> IOStream
+f = open("/Users/himaeda/Documents/Julia/Julia_practice/input.txt")
+close(f)
+
+open("/Users/himaeda/Documents/Julia/Julia_practice/input.txt", "w") do f
+    println(f, "Line 1")
+    println(f, "Line 2")
+end
+open(readlines, "/Users/himaeda/Documents/Julia/Julia_practice/input.txt")
+readline(stdin)
+
+# P126
+using Serialization
+dict = Dict("a" => 1, "b" => 2)
+serialize("/Users/himaeda/Documents/Julia/Julia_practice/dict.dat", dict)
+
+test = deserialize("/Users/himaeda/Documents/Julia/Julia_practice/dict.dat")
+test
+
+using JLD2, FileIO
+using PyCall
+
+# To add python packages for Julia
+# Conda.add(pkg)
+
+const stats = pyimport("scipy.stats")
+stats.beta.pdf(0.5, 1.0, 4.0)
